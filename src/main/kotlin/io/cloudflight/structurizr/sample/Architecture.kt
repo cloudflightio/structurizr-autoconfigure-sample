@@ -44,6 +44,7 @@ class ViewConfigurer(workspace: Workspace) : ViewProvider {
     override fun createViews(viewSet: ViewSet) {
         viewSet.createSystemLandscapeView("codingcontest", "").also {
             it.addAllElements()
+            it.enableAutomaticLayout()
         }
     }
 }
@@ -174,16 +175,19 @@ class CodingContest(model: Model, personas: Personas) : ViewProvider {
         viewSet.createContainerView(platform, "ccp", "Coding Contest Platform").apply {
             addAllContainersAndInfluencers()
             addAllPeople()
+            enableAutomaticLayout()
         }
 
         viewSet.createContainerView(platform, "ccpNoAzure", "Coding Contest Platform without DB").apply {
             addAllContainersAndInfluencers()
             addAllPeople()
             removeElementsWithTag(MyTags.AzureInfrastructure)
+            enableAutomaticLayout()
         }
 
         viewSet.createDeploymentView(platform, "deployment", "").apply {
             addAllDeploymentNodes()
+            enableAutomaticLayout()
         }
     }
 }
